@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ProductDetailActivity">
+
+        <include layout="@layout/custom_toolbar" />
+
+        <ImageView
+            android:id="@+id/actProductDetail_imgProductImage"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_below="@+id/customtoolbar_toolbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/actProductDetail_txt_ProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/actProductDetail_imgProductImage"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="PRODUCT NAME"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/actProductDetail_txt_ProductCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/actProductDetail_txt_ProductName"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="PRODUCT Category"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/actProductDetail_txt_ProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/actProductDetail_txt_ProductCategory"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="PRODUCT Description"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_below="@id/actProductDetail_txt_ProductDescription"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/actProductDetail_txt_ProductDescriptionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="PRODUCT Description"
+            android:textSize="18dp" />
+        </ScrollView>
+    </RelativeLayout>
+
+   <include layout="@layout/custom_progress"/>
+</FrameLayout>
+
+
