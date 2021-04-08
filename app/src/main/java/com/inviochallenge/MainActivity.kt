@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -14,13 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.inviochallenge.adapter.RA_BaseAdapter
 import com.inviochallenge.adapter.RA_CountryList
-import com.inviochallenge.model.Category.Category
 import com.inviochallenge.model.Country.Country
-import com.inviochallenge.utils.Status
 import com.inviochallenge.viewmodels.HomeViewModel
 import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis
-import kotlin.time.measureTime
 
 private lateinit var viewModel: HomeViewModel
 
@@ -76,9 +72,6 @@ class MainActivity : AppCompatActivity() {
 
             Log.e(TAG, "Geçen süre: $time")
         }
-//        getCountry()
-//        getCategory()
-
     }
 
     private fun setID(){
@@ -88,57 +81,4 @@ class MainActivity : AppCompatActivity() {
         txt_title = findViewById(R.id.customtoolbar_txtTitle)
     }
 
-    private fun getCategory() {
-        viewModel.getCategory().observe(this, {
-            it?.let { resource ->
-                when (resource.status) {
-                    Status.SUCCESS -> {
-                        progressBar.visibility = View.GONE
-                        Toast.makeText(this, "Success Category", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "Status: Success Category")
-                        Log.e(TAG, "onCreate: ${resource.data!!}")
-                    }
-                    Status.LOADING -> {
-                        progressBar.visibility = View.VISIBLE
-                        Toast.makeText(this, "Loading Category", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "Status: Loading Category")
-                    }
-                    Status.ERROR -> {
-                        progressBar.visibility = View.GONE
-                        Toast.makeText(this, "Error Category", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "Status: Error Category ${resource.message!!}")
-                    }
-                }
-            }
-        })
-    }
-
-    private fun getCountry() {
-        viewModel.getCountry().observe(this, {
-            it?.let { resource ->
-                when (resource.status) {
-                    Status.SUCCESS -> {
-                        Toast.makeText(this, "Success Country", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "Status: Success Country")
-                        Log.e(TAG, "onCreate: ${resource.data!!}")
-
-                        val adapter: RA_CountryList = RA_CountryList(this, resource.data)
-                        val layoutManager: LinearLayoutManager = LinearLayoutManager(this)
-                        layoutManager.orientation = RecyclerView.HORIZONTAL
-
-
-                    }
-                    Status.LOADING -> {
-                        Toast.makeText(this, "Loading Country", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "Status: Loading Country")
-                    }
-                    Status.ERROR -> {
-                        Toast.makeText(this, "Error Country", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "Status: Error Country ${resource.message!!}")
-                    }
-                }
-            }
-        })
-
-    }
 }

@@ -26,6 +26,7 @@ class ProductViewModel : ViewModel() {
                 _productList.value =
                     RetrofitInstance.retrofitInstance.getProductListFromCountry(countryID)
             } catch (e: Exception) {
+
                 Log.e(TAG, "getData: " + e.localizedMessage)
             }
         }

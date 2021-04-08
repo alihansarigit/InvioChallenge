@@ -5,9 +5,6 @@ import androidx.lifecycle.*
 import com.inviochallenge.model.Category.CategoryList
 import com.inviochallenge.model.Country.Country
 import com.inviochallenge.service.RetrofitInstance
-import com.inviochallenge.utils.Resource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -26,6 +23,7 @@ class HomeViewModel : ViewModel() {
             try {
                 _countryList.value = RetrofitInstance.retrofitInstance.getCountry()
             } catch (e: Exception) {
+                _countryList.value = RetrofitInstance.retrofitInstance.getCountry()
                 Log.e(TAG, "getData: " + e.localizedMessage)
             }
         }
@@ -33,10 +31,9 @@ class HomeViewModel : ViewModel() {
     fun getCategory2() {
         viewModelScope.launch {
             try {
-
                 _categoryList.value = RetrofitInstance.retrofitInstance.getCategory()
-
             } catch (e: Exception) {
+                _categoryList.value = RetrofitInstance.retrofitInstance.getCategory()
                 Log.e(TAG, "getData: " + e.localizedMessage)
             }
         }
@@ -51,26 +48,26 @@ class HomeViewModel : ViewModel() {
 //        }
 //    }
 
-    fun getCountry(): LiveData<Resource<Country>>{
-        return liveData(Dispatchers.IO) {
-            emit(Resource.loading(data = null))
-            try {
-                emit(Resource.success(data = RetrofitInstance.retrofitInstance.getCountry()))
-            } catch (exception: Exception) {
-                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-            }
-        }
-    }
-    fun getCategory(): LiveData<Resource<CategoryList>>{
-        return liveData(Dispatchers.IO) {
-            emit(Resource.loading(data = null))
-            try {
-                emit(Resource.success(data = RetrofitInstance.retrofitInstance.getCategory()))
-            } catch (exception: Exception) {
-                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
-            }
-        }
-    }
+//    fun getCountry(): LiveData<Resource<Country>>{
+//        return liveData(Dispatchers.IO) {
+//            emit(Resource.loading(data = null))
+//            try {
+//                emit(Resource.success(data = RetrofitInstance.retrofitInstance.getCountry()))
+//            } catch (exception: Exception) {
+//                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+//            }
+//        }
+//    }
+//    fun getCategory(): LiveData<Resource<CategoryList>>{
+//        return liveData(Dispatchers.IO) {
+//            emit(Resource.loading(data = null))
+//            try {
+//                emit(Resource.success(data = RetrofitInstance.retrofitInstance.getCategory()))
+//            } catch (exception: Exception) {
+//                emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+//            }
+//        }
+//    }
 
 
 
